@@ -1,0 +1,41 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>登录页面</title>
+</head>
+<body>
+登录页面
+<shiro:authenticated>
+    登录成功。用户名是：
+    <shiro:principal/>
+</shiro:authenticated>
+
+<shiro:notAuthenticated>
+    <form action="users/login" th:action="@{/users/login}" method="post">
+        <table align="center" width="800px">
+            <tr>
+                <td>用户名：</td>
+                <td><input type="text" name="username"/></td>
+            </tr>
+            <tr>
+                <td>密码：</td>
+                <td><input type="password" name="password"/></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div style="color:red;font-size: 12px;">[[${msg}]]</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="登录"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+</shiro:notAuthenticated>
+<a href="main.html">main</a>
+<!--此处跳转无效，无法找到templates下的资源-->
+</body>
+</html>

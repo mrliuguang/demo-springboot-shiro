@@ -1,0 +1,46 @@
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<title>主页面</title>
+</head>
+<body>
+<div shiro:authenticated>
+    登录成功。用户名是：
+    <shiro:principal/>
+</div>
+<h1>主页面</h1>
+<a href="../users/logout">退出登录1</a>
+
+<a href="../login/exit">退出登录2种用 logout方式</a>
+
+<hr>
+<shiro:user>　
+</shiro:user>
+<shiro:hasRole name="stu">
+    <a href="../student.html">学生页面</a><br/>
+</shiro:hasRole>
+<!--是否具备某个角色-->
+<div shiro:hasRole="tea">
+    <a href="../teacher.html">老师页面</a><br/>
+</div>
+<shiro:hasRole name="stu">
+    <shiro:hasRole name="tea">
+        <a href="../list.html">列表页面（需要stu和tea角色）</a><br/>
+    </shiro:hasRole>
+</shiro:hasRole>
+<hr/>
+
+<shiro:lacksRole name="stu">
+    我没有stu角色<br/>
+</shiro:lacksRole>
+
+<shiro:lacksRole name="tea">
+    我没有tea角色
+</shiro:lacksRole>
+
+
+</body>
+</html>
